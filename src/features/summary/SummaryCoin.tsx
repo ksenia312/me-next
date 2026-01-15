@@ -65,16 +65,14 @@ function DesktopCoin({
     back: React.ReactNode;
 }) {
     return (
-        <div className="relative mx-auto aspect-square w-60 m:w-55 l:w-70">
+        <div className="relative mx-auto aspect-square w-60 m:w-55 l:w-70 cursor-pointer">
             <div className="absolute inset-0 perspective-[1000px]">
                 <div
                     className={cn(
                         "absolute inset-0 transition-transform duration-500",
                         "transform-3d",
                         "ease-[cubic-bezier(0.2,0.9,0.2,1.15)]",
-                        flipped
-                            ? "transform-[rotateY(180deg)]"
-                            : "transform-[rotateY(0deg)]",
+                        flipped ? "transform-[rotateY(180deg)]" : "transform-[rotateY(0deg)]",
                     )}
                 >
                     <div
