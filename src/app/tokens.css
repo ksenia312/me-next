@@ -1,0 +1,29 @@
+@layer utilities {
+    .rs-x2s {
+        @apply s:[--rs-x2s:4px] [--rs-x2s:2px];
+    }
+
+    .gap-x2s {
+        @apply gap-1;
+    }
+
+    .s\:gap-x2s {
+        @apply s:gap-1;
+    }
+
+    .p-x2s {
+        padding: 4px;
+    }
+
+    .s\:p-x2s {
+        padding: 4px;
+    }
+
+    .rs-small {
+        padding: 8px;
+    }
+
+    .max-s\:rs-small {
+        padding: 4px;
+    }
+}

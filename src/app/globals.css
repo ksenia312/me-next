@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+    --breakpoint-s: 501px;
+    --breakpoint-m: 801px;
+    --breakpoint-l: 1401px;
+    --breakpoint-xl: 1701px;
+    --breakpoint-xxl: 3701px;
+
+    --radius-toolbar: 6px;
+    --radius-pill: 9999px;
+
+    --color-surface: var(--c-surface-0);
+
+    --color-primary: var(--c-white);
+    --color-primary-hover: var(--c-surface-3);
+
+    --color-secondary: var(--c-surface-3);
+    --color-tertiary: var(--c-surface-2);
+    --color-tertiary-hover: var(--c-surface-3);
+
+    --color-section: var(--c-surface-2);
+
+    --color-chip: var(--c-chipBg);
+
+    --color-error: var(--c-red);
+
+    --color-on-surface: var(--c-white);
+    --color-on-primary: var(--c-charcoal);
+    --color-on-secondary: var(--c-white);
+
+    --color-accent: var(--c-accent);
+    --color-accent-hover: var(--c-accent-hover);
+    --color-accent-more: var(--c-roseMist);
+
+    --color-video-bg: var(--c-surface-1);
+    --color-bottom-bar-bg: var(--c-surface-0);
+
+    --color-markdown-bg: var(--c-surface-2);
+    --color-summary-bg: var(--c-summaryTint);
+
+    --color-gradient-extra-light: var(--c-welcome-top);
+    --color-gradient-dark: var(--c-welcome-bottom);
+
+    --color-wave-border: var(--c-roseQuartz);
+}
+
+@layer base {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    :root {
+        color-scheme: dark;
+
+        --c-white: #faf7f8;
+        --c-snow: #fcfbfb;
+        --c-silverGrey: #bdb5b9;
+
+        --c-charcoal: #0f0d0e;
+
+        --c-surface-0: #1c161b;
+        --c-surface-1: #1b1418;
+        --c-surface-2: #241a20;
+        --c-surface-3: #2f232b;
+
+        --c-icyBlue: rgba(250, 247, 248, 0.12);
+        --c-icyBlueDark: rgba(47, 35, 43, 1);
+        --c-sapphireBlue: rgba(198, 74, 80, 0.14);
+        --c-mutedBlue: #7e7479;
+
+        --c-accent: #c64a50;
+        --c-accent-hover: #a63d42;
+
+        --c-roseQuartz: #f6bccc;
+        --c-roseMist: #ffe8ef;
+
+        --c-chipBg: color-mix(
+                in srgb,
+                var(--c-surface-3) 90%,
+                var(--c-roseQuartz) 10%
+        );
+
+        --c-summaryTint: color-mix(
+                in srgb,
+                var(--c-surface-2) 92%,
+                var(--c-accent) 8%
+        );
+
+        --c-welcome-top: #4b2733;
+        --c-welcome-bottom: #0c0a0c;
+
+        --c-inkBlack: #000000;
+        --c-richBlack: #010101;
+        --c-merlot: #6d2a3a;
+
+        --c-red: #ff5f7a;
+
+        --lm: 16px;
+        --gap-lg: 8px;
+        --sp-x10: 66px;
+    }
+
+    @media (min-width: 501px) {
+        :root {
+            --gap-lg: 16px;
+            --sp-x10: 88px;
+        }
+    }
+
+    @media (min-width: 801px) {
+        :root {
+            --lm: 64px;
+        }
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100dvh;
+        background: var(--color-surface);
+        color: var(--color-on-surface);
+        font-family: var(--font-onest), system-ui, -apple-system, "Segoe UI",
+        Roboto, Arial, sans-serif;
+    }
+}
