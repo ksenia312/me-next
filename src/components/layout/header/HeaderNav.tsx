@@ -18,7 +18,7 @@ export function HeaderNav({items}: { items: HeaderItem[] }) {
                         e.preventDefault();
                         scrollToId(it.id, {behavior: "smooth", updateHash: true});
                     }}
-                    className="rounded-toolbar px-6 py-2 text-sm text-on-surface/90 hover:bg-secondary/60 hover:text-on-surface transition"
+                    className="rounded-toolbar px-6 py-2 text-sm text-on-surface/90 hover:bg-secondary/60 hover:text-on-surface transition cursor-pointer"
                 >
                     {it.label}
                 </a>

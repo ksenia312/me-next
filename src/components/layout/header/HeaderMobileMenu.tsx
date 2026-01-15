@@ -73,7 +73,7 @@ function HeaderMobileMenu({
 
                     <div className="fixed inset-x-0 bottom-0 z-10000 px-4 pb-6">
                         <div className="mx-auto w-full max-w-130">
-                            <LanguageButton fullWidth center variant="pill" className="py-4"/>
+                            <LanguageButton fullWidth center className="py-4"/>
                         </div>
                     </div>
                 </div>
