@@ -3,11 +3,9 @@
 import Image from "next/image";
 import {useState} from "react";
 
-import {usePetProjectThumb} from "@/hooks/usePetProjectThumb";
 import {cn} from "@/lib/cn";
 
 export function PetProjectHero({
-                                   id,
                                    background,
                                    coverImageUrl,
                                    showErrorIcon,
@@ -17,12 +15,11 @@ export function PetProjectHero({
     coverImageUrl: string | null;
     showErrorIcon: boolean;
 }) {
-    const thumbSrc = usePetProjectThumb(id);
     const [mainReady, setMainReady] = useState(false);
 
     return (
-        <section className="w-full pt-[60px] m:pt-[50px]" style={{background}}>
-            <div className="h-[258px] w-full flex items-center justify-center">
+        <section className="w-full pt-15 m:pt-12.5" style={{background}}>
+            <div className="h-64.5 w-full flex items-center justify-center">
                 {showErrorIcon ? (
                     <Image
                         src="/icons/ic_error.svg"
@@ -33,14 +30,6 @@ export function PetProjectHero({
                     />
                 ) : coverImageUrl ? (
                     <div className="relative h-full w-full">
-                        {thumbSrc && !mainReady ? (
-                            <img
-                                src={thumbSrc}
-                                alt=""
-                                className="absolute inset-0 h-full w-full object-contain blur-2xl scale-[1.02] opacity-80"
-                            />
-                        ) : null}
-
                         <Image
                             src={coverImageUrl}
                             alt=""
@@ -54,6 +43,14 @@ export function PetProjectHero({
                             )}
                             onLoadingComplete={() => setMainReady(true)}
                         />
+
+                        {/* OPTIONAL: если не хочешь “пустоту”, можно показать простой тёмный фон пока грузится */}
+                        {!mainReady ? (
+                            <div
+                                className="absolute inset-0"
+                                style={{backgroundColor: "rgba(0,0,0,0.15)"}}
+                            />
+                        ) : null}
                     </div>
                 ) : null}
             </div>
