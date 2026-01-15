@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {useCallback} from "react";
-import {useRouter} from "next/navigation";
 
 import type {PetProjectCardVM} from "@/lib/features/projects/types";
 import {setPetProjectThumb} from "@/lib/shared/client/petProjectThumbCache";
@@ -16,23 +14,14 @@ type Props = {
 };
 
 export function ProjectCard({vm, locale}: Props) {
-    const router = useRouter();
-
     const title = pickLocalized(vm.data.titles, locale);
     const subtitle = pickLocalized(vm.data.subtitles, locale);
 
     const href = `/pet-project/${encodeURIComponent(vm.data.id)}`;
 
-    const prefetch = useCallback(() => {
-        router.prefetch(href);
-    }, [href, router]);
-
     return (
         <Link
             href={href}
-            prefetch={false}
-            onMouseEnter={prefetch}
-            onTouchStart={prefetch}
             aria-label={title || "Pet project"}
             className={cn(
                 "group block",
@@ -47,6 +36,7 @@ export function ProjectCard({vm, locale}: Props) {
                         src={vm.imageUrl}
                         alt={title || "Project preview"}
                         fill
+                        unoptimized
                         className="block object-cover rounded-[28px]"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onLoadingComplete={(img) => {
