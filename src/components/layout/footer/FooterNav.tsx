@@ -23,6 +23,7 @@ export function FooterNav({
                     }}
                     className={[
                         "w-full m:w-auto",
+                        "text-center",
                         "rounded-toolbar px-6 py-3 text-sm",
                         "text-on-surface/90",
                         "hover:bg-secondary/60 hover:text-on-surface",
