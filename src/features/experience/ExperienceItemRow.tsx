@@ -30,7 +30,7 @@ export function ExperienceItemRow({item}: { item: ExperienceItem }) {
                                 text={item.organization}
                             />
                             <ExperienceInfoRow
-                                iconSrc="/icons/ic_location.svg"
+                                iconSrc="/icons/ic_pointer.svg"
                                 text={item.location}
                                 dim
                             />
