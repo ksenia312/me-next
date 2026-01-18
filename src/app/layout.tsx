@@ -8,6 +8,8 @@ import {Providers} from "@/app/providers";
 import {I18nProvider} from "@/i18n/I18nProvider";
 import {getPetProjectCards} from "@/lib/features/projects/server";
 
+export const revalidate = 3600;
+
 const TITLE = "Kseniia | Mobile Developer";
 const DESCRIPTION = "Experience the ultimate pleasure of browsing Kseniia's site";
 const OG_IMAGE_URL =

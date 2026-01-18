@@ -1,6 +1,6 @@
 'use server'
 import type {PetProjectPageVM} from "@/lib/features/projects/types";
-import {getPetProjectPageVM} from "@/lib/features/projects/serverPage";
+import {getPetProjectPageVM} from "@/lib/features/projects/server";
 import {PetProjectPageClient} from "@/features/pet-project/PetProjectPageClient";
 
 export default async function Page({
