@@ -51,7 +51,7 @@ export function LanguageButton({
     };
 
     const headerTabClass =
-        "rounded-toolbar px-6 py-2 text-sm text-on-surface/90 hover:bg-secondary/60 hover:text-on-surface transition cursor-pointer";
+        "rounded-toolbar px-6 py-2 text-sm text-on-surface/90 hover:bg-secondary/60 hover:text-on-surface transition";
 
     const triggerClassName = cn(
         headerTabClass,
@@ -95,7 +95,7 @@ export function LanguageButton({
                                             setOpenDesktop(false);
                                         }}
                                         className={cn(
-                                            "w-full px-3 py-2 text-left text-sm transition cursor-pointer",
+                                            "w-full px-3 py-2 text-left text-sm transition",
                                             active
                                                 ? "bg-primary-hover text-on-surface"
                                                 : "text-on-surface/90 hover:bg-primary/10",
@@ -149,7 +149,7 @@ export function LanguageButton({
                                     <button
                                         type="button"
                                         onClick={() => setOpenMobile(false)}
-                                        className="grid h-10 w-10 place-items-center rounded-lg hover:bg-secondary/60 transition text-on-surface cursor-pointer"
+                                        className="grid h-10 w-10 place-items-center rounded-lg hover:bg-secondary/60 transition text-on-surface"
                                         aria-label="Close"
                                     >
                                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -178,7 +178,7 @@ export function LanguageButton({
                                                             setOpenMobile(false);
                                                         }}
                                                         className={cn(
-                                                            "w-full rounded-lg px-4 py-4 text-center text-base transition cursor-pointer text-on-surface",
+                                                            "w-full rounded-lg px-4 py-4 text-center text-base transition text-on-surface",
                                                             active
                                                                 ? "bg-(--color-tertiary)"
                                                                 : "bg-(--color-secondary) hover:bg-(--color-tertiary)",

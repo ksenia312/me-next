@@ -52,6 +52,14 @@
         box-sizing: border-box;
     }
 
+    button {
+        cursor: pointer;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
     :root {
         color-scheme: dark;
 
