@@ -13,7 +13,7 @@ export const revalidate = 3600;
 const TITLE = "Kseniia | Mobile Developer";
 const DESCRIPTION = "Experience the ultimate pleasure of browsing Kseniia's site";
 const OG_IMAGE_URL =
-    "https://github.com/user-attachments/assets/373570da-b698-4a65-bfd7-4ab14c7b5a11";
+    "https://github.com/user-attachments/assets/49a2cd3c-1d7d-4754-8b0b-e80925e5d485";
 
 export const metadata: Metadata = {
     title: TITLE,
