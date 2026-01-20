@@ -52,7 +52,7 @@ export function TimelineRail() {
 
     const circleSize = 78;
     const railArea = 15;
-    const stroke = 0.5;
+    const stroke = 1;
 
     const leftColumnWidth = 260;
     const centerXDesktop = leftColumnWidth - circleSize / 2;
