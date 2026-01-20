@@ -10,7 +10,7 @@ import type {
     PetProjectPageVM,
 } from "@/lib/features/projects/types";
 
-const SIGNED_URL_TTL_MS = 1000 * 10;
+const SIGNED_URL_TTL_MS = 1000 * 60 * 2;
 
 function normalizeDocId(input: unknown): string | null {
     if (typeof input !== "string") return null;
@@ -25,18 +25,11 @@ function normalizeStoragePath(input: unknown): string | null {
     return v ? v : null;
 }
 
-function withCacheBuster(url: string): string {
-    const sep = url.includes("?") ? "&" : "?";
-    return `${url}${sep}v=${Date.now()}`;
-}
-
 async function getSignedUrlOrNull(path: string | null | undefined) {
     if (!path) return null;
     const normalized = normalizeStoragePath(path);
     if (!normalized) return null;
-
-    const url = await getStableSignedUrl(normalized, {ttlMs: SIGNED_URL_TTL_MS});
-    return withCacheBuster(url);
+    return getStableSignedUrl(normalized, {ttlMs: SIGNED_URL_TTL_MS});
 }
 
 export async function getPetProjectCards(): Promise<PetProjectCardsResult> {
