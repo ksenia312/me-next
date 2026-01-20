@@ -17,6 +17,7 @@ export function AppTitle({title, subtitle, align = "right"}: Props) {
                     "font-bold uppercase",
                     "text-[28px] leading-[1.2] max-md:text-[28px]",
                     "max-md:text-center",
+                    "tracking-[0.08em]",
                     textAlign,
                 )}
             >

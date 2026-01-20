@@ -13,8 +13,7 @@ export const revalidate = 3600;
 const TITLE = "Kseniia | Mobile Developer";
 const DESCRIPTION = "Experience the ultimate pleasure of browsing Kseniia's site";
 const OG_IMAGE_URL =
-    "https://github-production-user-asset-6210df.s3.amazonaws.com/71008947/538188799-49a2cd3c-1d7d-4754-8b0b-e80925e5d485.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260120%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260120T192118Z&X-Amz-Expires=300&X-Amz-Signature=2879f07196ba6cea9a4acaa61d5371b87b588e79fef79333582f2aa04f22da15&X-Amz-SignedHeaders=host";
-
+    "https://github-production-user-asset-6210df.s3.amazonaws.com/71008947/538199475-0664a467-177a-4375-b24a-420ef948fd08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260120%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260120T193909Z&X-Amz-Expires=300&X-Amz-Signature=126518c34a353dece9db19db1e95afd598215d379d32259bb30d991de91a289f&X-Amz-SignedHeaders=host"
 export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
