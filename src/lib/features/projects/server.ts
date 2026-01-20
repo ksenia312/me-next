@@ -7,10 +7,10 @@ import type {
     FirestorePetProjectDoc,
     PetProjectCardsResult,
     PetProjectCardVM,
-    PetProjectPageVM
+    PetProjectPageVM,
 } from "@/lib/features/projects/types";
 
-const SIGNED_URL_TTL_MS = 1000 * 60 * 60 * 24 * 3;
+const SIGNED_URL_TTL_MS = 1000 * 60 * 2;
 
 function normalizeDocId(input: unknown): string | null {
     if (typeof input !== "string") return null;
