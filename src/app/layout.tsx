@@ -27,7 +27,20 @@ export const metadata: Metadata = {
         title: TITLE,
         description: DESCRIPTION,
         type: "website",
-        images: [{url: OG_IMAGE_URL}],
+        images: [
+            {
+                url: OG_IMAGE_URL,
+                width: 1200,
+                height: 630,
+                alt: "Kseniia | Mobile Developer",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: TITLE,
+        description: DESCRIPTION,
+        images: [OG_IMAGE_URL],
     },
     icons: {
         icon: [
