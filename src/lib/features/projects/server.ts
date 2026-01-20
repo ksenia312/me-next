@@ -10,7 +10,7 @@ import type {
     PetProjectPageVM,
 } from "@/lib/features/projects/types";
 
-const SIGNED_URL_TTL_MS = 1000 * 60;
+const SIGNED_URL_TTL_MS = 1000 * 60 * 60 * 12;
 
 function normalizeDocId(input: unknown): string | null {
     if (typeof input !== "string") return null;
@@ -25,11 +25,18 @@ function normalizeStoragePath(input: unknown): string | null {
     return v ? v : null;
 }
 
-async function getSignedUrlOrNull(path: string | null | undefined) {
+function withCacheBuster(url: string, key: string) {
+    const sep = url.includes("?") ? "&" : "?";
+    return `${url}${sep}v=${encodeURIComponent(key)}`;
+}
+
+async function getSignedUrlOrNull(path: string | null | undefined, key: string) {
     if (!path) return null;
     const normalized = normalizeStoragePath(path);
     if (!normalized) return null;
-    return getStableSignedUrl(normalized, {ttlMs: SIGNED_URL_TTL_MS});
+
+    const url = await getStableSignedUrl(normalized, {ttlMs: SIGNED_URL_TTL_MS});
+    return withCacheBuster(url, key);
 }
 
 export async function getPetProjectCards(): Promise<PetProjectCardsResult> {
@@ -41,7 +48,9 @@ export async function getPetProjectCards(): Promise<PetProjectCardsResult> {
             const doc = d.data() as FirestorePetProjectDoc;
             const data = mapDocToData(d.id, doc);
 
-            const imageUrl = (await getSignedUrlOrNull(data.imageStoragePath)) ?? "";
+            const imageUrl =
+                (await getSignedUrlOrNull(data.imageStoragePath, `${d.id}:${data.imageStoragePath}`)) ??
+                "";
 
             return {data, imageUrl};
         }),
@@ -51,9 +60,7 @@ export async function getPetProjectCards(): Promise<PetProjectCardsResult> {
     return {vms, count: vms.length};
 }
 
-export async function getPetProjectPageVM(
-    idInput: unknown,
-): Promise<PetProjectPageVM | null> {
+export async function getPetProjectPageVM(idInput: unknown): Promise<PetProjectPageVM | null> {
     const id = normalizeDocId(idInput);
     if (!id) return null;
 
@@ -66,9 +73,9 @@ export async function getPetProjectPageVM(
     const data = mapDocToData(docSnap.id, doc);
 
     const [coverImageUrl, androidDemoUrl, iosDemoUrl] = await Promise.all([
-        getSignedUrlOrNull(data.imageStoragePath),
-        getSignedUrlOrNull(data.androidStoragePath),
-        getSignedUrlOrNull(data.iosStoragePath),
+        getSignedUrlOrNull(data.imageStoragePath, `${docSnap.id}:${data.imageStoragePath}`),
+        getSignedUrlOrNull(data.androidStoragePath, `${docSnap.id}:${data.androidStoragePath ?? ""}`),
+        getSignedUrlOrNull(data.iosStoragePath, `${docSnap.id}:${data.iosStoragePath ?? ""}`),
     ]);
 
     return {
