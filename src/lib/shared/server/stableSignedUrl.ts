@@ -6,11 +6,6 @@ type Options = {
     ttlMs: number;
 };
 
-function stableExpiresMs(ttlMs: number, nowMs: number) {
-    const bucket = Math.floor(nowMs / ttlMs) + 1;
-    return bucket * ttlMs;
-}
-
 export async function getStableSignedUrl(
     storagePath: string,
     {ttlMs}: Options,
@@ -21,7 +16,7 @@ export async function getStableSignedUrl(
 
     const [url] = await file.getSignedUrl({
         action: "read",
-        expires: stableExpiresMs(ttlMs, Date.now()),
+        expires: Date.now() + ttlMs,
     });
 
     return url;
