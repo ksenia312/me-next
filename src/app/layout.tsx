@@ -13,7 +13,7 @@ export const revalidate = 3600;
 const TITLE = "Kseniia | Mobile Developer";
 const DESCRIPTION = "Experience the ultimate pleasure of browsing Kseniia's site";
 const OG_IMAGE_URL =
-    "https://github.com/user-attachments/assets/ae0bad60-2150-4289-91be-becc4b6977aa";
+    "https://github.com/user-attachments/assets/373570da-b698-4a65-bfd7-4ab14c7b5a11";
 
 export const metadata: Metadata = {
     title: TITLE,
@@ -27,20 +27,7 @@ export const metadata: Metadata = {
         title: TITLE,
         description: DESCRIPTION,
         type: "website",
-        images: [
-            {
-                url: OG_IMAGE_URL,
-                width: 1200,
-                height: 630,
-                alt: "Kseniia | Mobile Developer",
-            },
-        ],
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: TITLE,
-        description: DESCRIPTION,
-        images: [OG_IMAGE_URL],
+        images: [{url: OG_IMAGE_URL}],
     },
     icons: {
         icon: [
