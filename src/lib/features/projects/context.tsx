@@ -16,15 +16,27 @@ type PetProjectsContextValue = {
 
 const PetProjectsContext = createContext<PetProjectsContextValue | null>(null);
 
-export function PetProjectsProvider({
-                                        children,
-                                        initialData,
-                                    }: {
-    children: ReactNode;
-    initialData?: PetProjectCardsResult | null;
-}) {
-    const [data, setData] = useState<PetProjectCardsResult | null>(initialData ?? null);
-    const [status, setStatus] = useState<Status>(initialData ? "ready" : "idle");
+const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? "dev";
+const SESSION_KEY = `petProjects.cards.v2.${APP_VERSION}`;
+
+function readSession(): PetProjectCardsResult | null {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+
+    try {
+        return JSON.parse(raw) as PetProjectCardsResult;
+    } catch {
+        return null;
+    }
+}
+
+function writeSession(value: PetProjectCardsResult) {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(value));
+}
+
+export function PetProjectsProvider({children}: { children: ReactNode }) {
+    const [data, setData] = useState<PetProjectCardsResult | null>(null);
+    const [status, setStatus] = useState<Status>("idle");
     const [error, setError] = useState<string | null>(null);
 
     const inFlightRef = useRef<Promise<void> | null>(null);
@@ -37,9 +49,19 @@ export function PetProjectsProvider({
             setError(null);
 
             try {
+                if (!data) {
+                    const cached = readSession();
+                    if (cached) {
+                        setData(cached);
+                        setStatus("ready");
+                        return;
+                    }
+                }
+
                 const res = await fetchPetProjectCards();
                 setData(res);
                 setStatus("ready");
+                writeSession(res);
             } catch (e) {
                 setStatus("error");
                 setError(e instanceof Error ? e.message : "Unknown error");
@@ -50,9 +72,10 @@ export function PetProjectsProvider({
 
         inFlightRef.current = p;
         return p;
-    }, []);
+    }, [data]);
 
     const refresh = useCallback(async () => {
+        sessionStorage.removeItem(SESSION_KEY);
         inFlightRef.current = null;
         setStatus("loading");
         await load();
@@ -69,15 +92,15 @@ export function PetProjectsProvider({
         [data, status, error, refresh],
     );
 
-    return <PetProjectsContext.Provider value={value}>{children}</PetProjectsContext.Provider>;
+    return (
+        <PetProjectsContext.Provider value={value}>
+            {children}
+        </PetProjectsContext.Provider>
+    );
 }
 
 export function usePetProjects(): PetProjectsContextValue {
     const ctx = useContext(PetProjectsContext);
-
-    if (!ctx) {
-        throw new Error("usePetProjects must be used within PetProjectsProvider");
-    }
-
+    if (!ctx) throw new Error("usePetProjects must be used within PetProjectsProvider");
     return ctx;
 }

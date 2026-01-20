@@ -43,8 +43,6 @@ export function PetProjectHero({
                             )}
                             onLoadingComplete={() => setMainReady(true)}
                         />
-
-                        {/* OPTIONAL: если не хочешь “пустоту”, можно показать простой тёмный фон пока грузится */}
                         {!mainReady ? (
                             <div
                                 className="absolute inset-0"

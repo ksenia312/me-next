@@ -3,6 +3,10 @@ import type {PetProjectCardsResult} from "@/lib/features/projects/types";
 export async function fetchPetProjectCards(): Promise<PetProjectCardsResult> {
     const res = await fetch("/api/pet-projects", {
         cache: "no-store",
+        headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+        },
     });
 
     if (!res.ok) {

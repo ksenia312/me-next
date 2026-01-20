@@ -6,14 +6,15 @@ import "./globals.css";
 import {onest} from "@/app/fonts";
 import {Providers} from "@/app/providers";
 import {I18nProvider} from "@/i18n/I18nProvider";
-import {getPetProjectCards} from "@/lib/features/projects/server";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const TITLE = "Kseniia | Mobile Developer";
 const DESCRIPTION = "Experience the ultimate pleasure of browsing Kseniia's site";
 const OG_IMAGE_URL =
-    "https://github-production-user-asset-6210df.s3.amazonaws.com/71008947/538199475-0664a467-177a-4375-b24a-420ef948fd08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260120%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260120T193909Z&X-Amz-Expires=300&X-Amz-Signature=126518c34a353dece9db19db1e95afd598215d379d32259bb30d991de91a289f&X-Amz-SignedHeaders=host"
+    "https://github-production-user-asset-6210df.s3.amazonaws.com/71008947/538199475-0664a467-177a-4375-b24a-420ef948fd08.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260120%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260120T193909Z&X-Amz-Expires=300&X-Amz-Signature=126518c34a353dece9db19db1e95afd598215d379d32259bb30d991de91a289f&X-Amz-SignedHeaders=host";
+
 export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
@@ -61,13 +62,11 @@ export default async function RootLayout({
                                          }: Readonly<{
     children: ReactNode;
 }>) {
-    const initialPetProjects = await getPetProjectCards();
-
     return (
         <html lang="en">
         <body className={`${onest.variable} antialiased`}>
         <I18nProvider>
-            <Providers initialPetProjects={initialPetProjects}>
+            <Providers>
                 {children}
             </Providers>
         </I18nProvider>
