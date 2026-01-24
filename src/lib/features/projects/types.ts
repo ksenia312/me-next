@@ -16,7 +16,7 @@ export type PetProjectData = {
 
 export type PetProjectCardVM = {
     data: PetProjectData;
-    imageUrl: string;
+    imageUrl: string | null;
 };
 
 export type PetProjectPageVM = {
