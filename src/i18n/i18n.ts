@@ -20,6 +20,7 @@ import zh from "../translations/zh.json";
 
 export const supportedLanguages = [
     "en",
+    "nl",
     "ru",
     "es",
     "fr",
@@ -31,7 +32,6 @@ export const supportedLanguages = [
     "zh",
     "hi",
     "tr",
-    "nl",
 ] as const;
 
 export type SupportedLocale = (typeof supportedLanguages)[number];
